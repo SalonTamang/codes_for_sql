@@ -1,0 +1,3 @@
+set @num := 0;
+update bike set id = @num := (@num + 1);
+alter table bikes auto_increment = 1;
