@@ -1,0 +1,110 @@
+show dbs 
+-to list current databases
+
+use db_name 
+-create or select a database
+
+db.dropDatabase()
+-deletes currently using database
+
+show collections
+-to list current collections
+
+db.createCollection("name",options)
+-create a new collection
+[options controls size and indexing]
+
+db.collection_name.drop()
+-to delete a collection
+[return true for collection dropped successfully]
+
+
+db.collection_name.insert(JSON document)
+-to insert all document in collection.
+
+document data types
+string, integer, boolean,null, objectID
+
+db.collection_name.find()
+-list all group of databases
+
+db.collection_name.find({name:"salon"}) [needs JSON format]
+-only find the database with name salon
+
+db.collection_name.find({name:"salon"}).pretty()
+-to display everything prettier
+
+operators
+{<key> : {$[a]:<value>}}
+
+lt for less than
+lte for less than equals
+gt for greater than
+gte for greater than equals
+ne for not equals
+
+db.collection_name.find({$and: [{"name":"salon"}, {"size":"5"}]}).pretty()
+$or
+
+db.collettion_name.remove()
+-removes all that match criteria.
+-deleteOne() delete a single document
+-deleteMany() delete all documents
+
+                           select criteria, updated_data     
+db.collection_name.update({"name":"salon"}, {$set:{"age":22}})
+-update a sigle document
+
+db.collection_name.update({"age":21},{$set: {"age": 22}}, {$multi:true})
+-updates all document with age 21 to age 22
+
+db.collection_name.save({_id:ObjectId(), name:"salon", "age":22, "sex": "M"})
+-replaces one document with another
+
+
+index for searching
+			name of file
+db.Products.createIndex({description:"text"})
+
+$text operator to perform text searches on a collection with a text index
+db.Products.find({$text:{$search:"Nike"}}).pretty()
+-displays all documents with term "Nike"
+
+sorting search results
+
+db.collection_name.find().sort({KEY:1})
+key is the field for sorting.
+1 for ascending order
+-1 for descending order
+ 
+db.collection_name.find().sort({name:1})
+- sort the results in alphabetical order
+-1 - for reverse alpabetical order
+
+creating user authentication for the database
+
+
+db.createUser({user:"boss",	
+		pwd:"123",
+		roles: [{role: "userAdminAnyDatabase", db:"admin"}]
+})
+
+after this you need to login to have access to database
+
+use [name_of_database]
+e.g use admin
+
+db.auth("root","123")
+	user, pwd
+-to login to database
+
+db.createUser({user:"website",
+		pwd: "abc"},
+	roles : [{role: "readWrite", db: "Cats"}]
+})
+-database with read/write features
+
+
+
+
+
